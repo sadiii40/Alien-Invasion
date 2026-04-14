@@ -26,7 +26,16 @@ class AlienInvasion:
         )
         pygame.display.set_caption("Alien Invasion")
 
+        # Load and scale background image
+        self.bg_image = pygame.image.load(
+            self.settings.bg_image_path).convert()
+        self.bg_image = pygame.transform.scale(
+            self.bg_image,
+            (self.settings.screen_width, self.settings.screen_height))
+
+        # Create ship and bullets group
         self.ship = Ship(self)
+        self.bullets = pygame.sprite.Group()
 
     def run_game(self):
         """The main loop"""
@@ -86,8 +95,7 @@ class AlienInvasion:
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen"""
         #draw background
-        self.screen.fill(self.settings.bg_color)
-        #draw bullets and ship
+        self.screen.blit(self.bg_image, (0, 0))        #draw bullets and ship
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
         self.ship.blitme()
@@ -97,3 +105,4 @@ if __name__ == '__main__':
     ai = AlienInvasion()
     ai.run_game()
 
+# AI Disclosure: Drafted myself and polished using AI
