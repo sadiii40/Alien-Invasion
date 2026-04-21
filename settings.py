@@ -17,7 +17,7 @@ class Settings:
         self.ship_image_path = self._images_dir / "ship.png"
         self.laser_image_path = self._images_dir / "laser.png"
         self.bg_image_path = self._images_dir / "background.png"
-
+        self.alien_image_path = self._images_dir / "alien.png"
         #Ship settings
         self.ship_speed = 1.5
 
@@ -27,3 +27,7 @@ class Settings:
         self.bullet_height = 3
         self.bullet_color = (60, 60, 60)
         self.bullets_allowed = 3
+
+        #Alien settings
+        self.alien_speed = 1.0
+        self.fleet_drop_speed = 10

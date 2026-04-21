@@ -12,6 +12,7 @@ import pygame
 from settings import Settings
 from ship import Ship
 from bullet import Bullet
+from alien import Alien
 
 class AlienInvasion:
     def __init__(self):
@@ -36,6 +37,8 @@ class AlienInvasion:
         # Create ship and bullets group
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
+        self.aliens = pygame.sprite.Group()
+        self._create_fleet()
 
     def run_game(self):
         """The main loop"""
@@ -43,6 +46,7 @@ class AlienInvasion:
             self._check_events()
             self.ship.update()
             self._update_bullets()
+            self._update_aliens()
             self._update_screen()
             self.clock.tick(60)
 
@@ -92,14 +96,45 @@ class AlienInvasion:
             if bullet.rect.left >= self.settings.screen_width:
                 self.bullets.remove(bullet)
 
+
+    def _create_fleet(self):
+        """Create a fleet of aliens"""
+        alien = Alien(self)
+        alien_width = alien.rect.width
+        alien_height = alien.rect.height
+
+        #pattern - 5 rows
+        for row in range(5):
+            for col in range(row + 1):
+                alien = Alien(self)
+                alien.rect.x = (self.settings.screen_width -
+                    alien_width * 2) - (col * alien_width * 2)
+                alien.rect.y = (row * alien_height * 2) + alien_height
+                alien.y = float(alien.rect.y)
+                print(f"Alien at x={alien.rect.x}, y={alien.rect.y}")  # add here
+                self.aliens.add(alien)
+            
+    def _update_aliens(self):
+        """Update positions of all aliens and check collision"""
+        self.aliens.update()
+
+        #bullet and alien collision
+        pygame.sprite.groupcollide(self.bullets, self.aliens, True, True)
+
+        #alien and ship collision
+        if pygame.sprite.spritecollideany(self.ship, self.aliens):
+            print("Ship hit!!")
+
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen"""
         #draw background
         self.screen.blit(self.bg_image, (0, 0))        #draw bullets and ship
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
+        self.aliens.draw(self.screen)
         self.ship.blitme()
         pygame.display.flip()
+
 
 if __name__ == '__main__':
     ai = AlienInvasion()
