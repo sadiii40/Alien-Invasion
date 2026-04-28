@@ -20,6 +20,8 @@ class Settings:
         self.alien_image_path = self._images_dir / "alien.png"
         #Ship settings
         self.ship_speed = 1.5
+        self._fonts_dir = self._base_dir / "Assets" / "Fonts"
+        self.font_path = self._fonts_dir / "Boogaloo-Regular.ttf"
 
         # Bullet settings
         self.bullet_speed = 2.0
