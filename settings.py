@@ -18,11 +18,19 @@ class Settings:
         self.laser_image_path = self._images_dir / "laser.png"
         self.bg_image_path = self._images_dir / "background.png"
         self.alien_image_path = self._images_dir / "alien.png"
+
+        # Sound paths
+        self._sounds_dir = self._base_dir / "Assets" / "sound"
+        self.music_path = self._sounds_dir / "music.wav"
+        self.laser_sound_path = self._sounds_dir / "laser.wav"
+        self.impact_sound_path = self._sounds_dir / "impact.wav"
+        
         #Ship settings
         self.ship_speed = 1.5
         self._fonts_dir = self._base_dir / "Assets" / "Fonts"
         self.font_path = self._fonts_dir / "Boogaloo-Regular.ttf"
         self.play_button_image_path = self._images_dir / "play_button.png"
+
         # Bullet settings
         self.bullet_speed = 2.0
         self.bullet_width = 15
