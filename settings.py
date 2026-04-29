@@ -22,7 +22,7 @@ class Settings:
         self.ship_speed = 1.5
         self._fonts_dir = self._base_dir / "Assets" / "Fonts"
         self.font_path = self._fonts_dir / "Boogaloo-Regular.ttf"
-
+        self.play_button_image_path = self._images_dir / "play_button.png"
         # Bullet settings
         self.bullet_speed = 2.0
         self.bullet_width = 15
