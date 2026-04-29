@@ -31,7 +31,7 @@ class Scoreboard:
 
     def prep_high_score(self):
         """Turn the high score into an image"""
-        high_Score_str = f"Best: {self.stats.high_score}"
+        high_score_str = f"Best: {self.stats.high_score}"
         self.high_score_image = self.font.render(high_score_str, True, self.text_color)
 
         self.high_score_rect = self.high_score_image.get_rect()
